@@ -57,6 +57,11 @@
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 
+        {{-- <div>
+            <x-input-label :value="__('Current Image')" />
+            <img src="{{ url('storage/' . auth()->user()->image_Url) }}" class="rounded-md">
+        </div> --}}
+
         <div>
             <x-input-label :value="__('Current Image')" />
             <img src="{{ auth()->user()->image_url }}" class="rounded-md">
