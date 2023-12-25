@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <x-link-button-gray href="{{ route('category.index') }}">go back</x-link-button-gray>
                     
-                    <form action="{{ route('category.store') }}">
+                    <form method="POST" action="{{ route('category.store') }}" class="mt-6 space-y-6">
                         @csrf
                         
                         <div>
