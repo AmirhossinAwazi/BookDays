@@ -30,7 +30,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'title' => 'required|string|min:3|max:20',
+            'slug' => 'required|string|min:3|max:20|alpha_dash'
+        ]);
+
+        $request->user()->categories()->create($validated);
+
+        return to_route('category.index');
     }
 
     /**
