@@ -10,7 +10,23 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <x-link-button-green href="{{ route('category.create') }}">create category</x-link-button-green>
-                    list of categories
+                    <div>
+                        <x-admin.table>
+                            <x-admin.table-header>
+                                <x-admin.table-column>Id</x-admin.table-column>
+                                <x-admin.table-column>Title</x-admin.table-column>
+                                <x-admin.table-column>Slug</x-admin.table-column>
+
+                                @foreach ($categories as $category)
+                                    <x-admin.table-row>
+                                        <x-admin.table-column>{{ $category->id }}</x-admin.table-column>
+                                        <x-admin.table-column>{{ $category->title }}</x-admin.table-column>
+                                        <x-admin.table-column>{{ $category->slug }}</x-admin.table-column>
+                                    </x-admin.table-row>
+                                @endforeach
+                            </x-admin.table-header>
+                        </x-admin.table>
+                    </div>
                 </div>
             </div>
         </div>
