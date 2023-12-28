@@ -16,12 +16,16 @@
                                 <x-admin.table-column>Id</x-admin.table-column>
                                 <x-admin.table-column>Title</x-admin.table-column>
                                 <x-admin.table-column>Slug</x-admin.table-column>
+                                <x-admin.table-column></x-admin.table-column>
 
                                 @foreach ($categories as $category)
                                     <x-admin.table-row>
                                         <x-admin.table-column>{{ $category->id }}</x-admin.table-column>
                                         <x-admin.table-column>{{ $category->title }}</x-admin.table-column>
                                         <x-admin.table-column>{{ $category->slug }}</x-admin.table-column>
+                                        <x-admin.table-column>
+                                            <x-link-button-gray href="{{ route('category.edit', $category) }}">Edit</x-link-button-gray>
+                                        </x-admin.table-column>
                                     </x-admin.table-row>
                                 @endforeach
                             </x-admin.table-header>
