@@ -78,6 +78,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return view('Admin.category.index');
+        return to_route('category.index');
     }
 }
