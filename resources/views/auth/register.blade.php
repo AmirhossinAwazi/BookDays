@@ -37,11 +37,10 @@
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                type="password"
+                name="password"
+                required autocomplete="new-password" />
+             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
@@ -62,6 +61,10 @@
 
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
+            </x-primary-button>
+
+            <x-primary-button action="{{ route('login') }}" class="ms-3">
+                go to log in
             </x-primary-button>
         </div>
     </form>
