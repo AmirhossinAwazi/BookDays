@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Admin.Post.index');
+        return view('Admin.Post.index',[
+            'posts' => $request->user()->posts()->paginate(2),
+        ]);
     }
 
     /**
