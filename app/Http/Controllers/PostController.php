@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -30,9 +33,19 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        $request->user()->posts()->create([
+            'title' => $request->input('title'),
+            'slug' => $request->input('slug') ?? Str::slug($request->input('title')),
+            'body' => $request->input('body'),
+            'category_id' => $request->input('category_id'),
+            'published_at' => $request->input('published_at'),
+            'is_draft' => $request->boolean('is_draft') ?? false,
+            'image' => $request->file('image')->store('post-image', 'public'),
+        ]);
+
+        return to_route('post.index');
     }
 
     /**
