@@ -13,10 +13,10 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('Admin.category.index',[
-            'categories' => Category::get(),
+            'categories' => $request->user()->categories()->paginate(2),
         ]);
     }
 
