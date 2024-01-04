@@ -44,6 +44,9 @@
                                 </x-admin.table-row>
                             @endforeach
                         </x-admin.table>
+                        <div class="mt-6">
+                            {{ $posts->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

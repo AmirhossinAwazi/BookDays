@@ -42,6 +42,9 @@
                                 </x-admin.table-row>
                             @endforeach
                         </x-admin.table>
+                        <div class="mt-6">
+                            {{ $categories->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
