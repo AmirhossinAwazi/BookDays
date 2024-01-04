@@ -105,8 +105,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        Storage::disk('public')->delete($post->image);
+
+        $post->delete();
+
+        return to_route('post.index');
     }
 }
