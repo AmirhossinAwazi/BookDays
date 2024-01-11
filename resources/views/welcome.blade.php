@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-orange-50">
     @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth
@@ -28,7 +28,7 @@
         </div>
     @endif
     {{-- hero section --}}
-    <div class=" bg-gray-100">
+    <div class=" bg-orange-100">
 
         <div class="flex justify-around container mx-auto">
 
@@ -62,12 +62,17 @@
     {{-- end hero section --}}
 
     {{--  Latest Posts  --}}
-        <div class="flex mt-16 gap-12">
+    <x-home.section title="Latest Posts">
+        <div class="flex mb-3 ml-3 mr-3 mt-16 gap-12">
             @foreach($latestPosts as $post)
              <x-widgets.post-card :$post/>
             @endforeach
-        </div>
+       </div>
+    </x-home.section>
     {{--  End Latest Posts  --}}
+
+
+
 </body>
 
 </html>

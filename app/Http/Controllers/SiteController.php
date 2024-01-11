@@ -10,7 +10,7 @@ class SiteController extends Controller
     public function index ()
     {
         
-        $latestPosts = Post::latest()->take(1)->get();
+        $latestPosts = Post::latest()->take(3)->get();
         return view('welcome',[
          'latestPosts' => $latestPosts,
         ]);
