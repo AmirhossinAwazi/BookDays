@@ -80,6 +80,16 @@
        </div>
     </x-home.section>
     {{--  End Latest Blogs  --}}
+
+    {{--  Most Viewed Posts  --}}
+    <x-home.section title="Most Viewed Posts">
+        <div class="flex mb-3 ml-3 mr-3 mt-16 gap-12">
+            @foreach($mostViewedPosts as $post)
+                <x-widgets.post-card :$post/>
+            @endforeach
+        </div>
+    </x-home.section>
+    {{--  End Most Viewed Posts  --}}    
 </body>
 
 </html>

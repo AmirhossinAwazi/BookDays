@@ -20,9 +20,12 @@ class SiteController extends Controller
         , 'desc')
         ->take(3)->get();
 
+        // $mostViewedPosts = Post::orderBy('views', 'desc')->take(3)->get();
+        $mostViewedPosts = Post::with(['author', 'category'])->orderBy('views', 'desc')->take(3)->get();
         return view('welcome',[
          'latestPosts' => $latestPosts,
          'latestBlogs' => $latestBlogs,
+         'mostViewedPosts' =>$mostViewedPosts,
         ]);
 
         
