@@ -71,8 +71,15 @@
     </x-home.section>
     {{--  End Latest Posts  --}}
 
-
-
+    {{--  Latest Blogs  --}}
+    <x-home.section title="Latest Blogs">
+        <div class="flex mb-3 ml-3 mr-3 mt-16 gap-12">
+            @foreach($latestBlogs as $blog)
+             <x-widgets.blog-card :$blog/>
+            @endforeach
+       </div>
+    </x-home.section>
+    {{--  End Latest Blogs  --}}
 </body>
 
 </html>
