@@ -22,7 +22,9 @@ class SiteController extends Controller
 
         // $mostViewedPosts = Post::orderBy('views', 'desc')->take(3)->get();
         $mostViewedPosts = Post::with(['author', 'category'])->orderBy('views', 'desc')->take(3)->get();
+        $blogCount = User::count();
         return view('welcome',[
+         'blogCount' => $blogCount,
          'latestPosts' => $latestPosts,
          'latestBlogs' => $latestBlogs,
          'mostViewedPosts' =>$mostViewedPosts,

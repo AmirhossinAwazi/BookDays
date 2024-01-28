@@ -36,6 +36,8 @@
 
                 <div class="text-7xl text-lime-700 ">Join BookDays</div>
 
+                <div class="text-2xl text-lime-500">Join {{ $blogCount }} {{ Str::plural('blog', $blogCount) }} on BookDays todaye.</div>
+
                 <div class="mt-20">
 
                     <a href="{{ route('register') }}"
