@@ -90,6 +90,13 @@
         </div>
     </x-home.section>
     {{--  End Most Viewed Posts  --}}    
+
+    <div class="mt-40 bg-orange-700 text-orange-200 p-5">
+        <div class="container mx-auto text-center">
+            All Rights Reserved &copy; {{ now()->year }}
+        </div>
+    </div>
+
 </body>
 
 </html>
