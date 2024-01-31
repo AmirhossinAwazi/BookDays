@@ -9,7 +9,7 @@ class BlogController extends Controller
 {
     public function index(User $user)
     {
-        $post = $user->posts()->paginate(5);
+        $post = $user->posts()->with(['category', 'tags'])->paginate(5);
         $categories = $user->categories;
 
         return view('blog.index', [
