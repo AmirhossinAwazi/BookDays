@@ -1,34 +1,44 @@
-<x-blog-layout :$blog>
-    <div class="bg-primary-200">
-        <div class="flex container mx-auto justify-around items-center">
-            <div>
-                <div class="font-title text-6xl text-primary-900">{{ $blog->title }}</div>
-                <div class="text-xl text-primary-500">{{ $blog->subtitle }}</div>
+<x-blog-layout>
 
-                <form class="flex items-center gap-2 mt-4" action="{{ route('blog.search', $blog) }}">
-                    <x-text-input type="text" name="q" required class="text-sm"/>
+    <div class="mt-32 p-16 container mx-auto space-y-32">
+        @foreach ($posts as $post)
+            <div class="flex gap-32">
 
-                    <button class="text-primary-900">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                            <path d="M21 21l-6 -6"></path>
-                        </svg>
-                    </button>
-                </form>
+                <div class="flex-1">
+
+                    <div class="text-lg text-gray-400 font-semibold">{{ $post->created_at->diffForhumans() }}</div>
+
+                    <div class="font-bold text-5xl">{{ $post->title }}</div>
+
+                    <div class="mt-4 px-3 py-0.5 rounded-md inline-flex bg-orange-100 text-orange-400 font-semibold">{{ $post->category->title }}</div> 
+
+                    @foreach ($post->tags as $tag)
+                        <div class="mt-4 px-3 py-0.5 rounded-md inline-flex bg-sky-100 text-sky-400 font-semibold">{{ $tag->name }}</div>  
+                    @endforeach
+
+                    <div class="mt-4 text-xl text-gray-500">{!! str($post->body)->words(50, '...') !!}</div> 
+
+                    <div class=" mt-10">
+                        <a href="#" class="mt-4 px-3 py-1.5 text-xl rounded-lg font-semibold bg-lime-300 text-lime-800 hover:bg-lime-400 hover:text-lime-900">Read More</a>                        
+                    </div>
+
+                </div>
+
+                <div  class="flex-1">
+                    <img src="{{ $post->image_Url }}" alt="{{ $post->title }}" class="h-96 w-full object-cover rounded-3xl">
+                </div>
+
             </div>
-
-            <div class="h-96">
-                <img src="{{ $blog->image_url }}" alt="{{ $blog->title }}" class="w-full h-full object-cover rounded-3xl relative top-16">
-            </div>
-        </div>
-    </div>
-
-    <div class="mt-32 p-16 pb-48 container max-w-screen-xl mx-auto space-y-48">
-        @foreach($posts as $post)
-            <x-widgets.post-item :$blog :$post/>
         @endforeach
-
         {{ $posts->links() }}
     </div>
+
+    <x-slot name="footer">
+        <div class="flex flex-col items-start gap-4">
+            @foreach ($categories as $category)
+                <a href="#">{{ $category->title }}</a>
+            @endforeach
+        </div>
+    </x-slot>
+
 </x-blog-layout>
