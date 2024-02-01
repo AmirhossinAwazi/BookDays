@@ -34,7 +34,7 @@
     </div>
 
     <x-slot name="footer">
-        <div class="flex flex-col items-start gap-4">
+        <div class="flex px-12 flex-col items-start gap-4">
             @foreach ($categories as $category)
                 <a href="#">{{ $category->title }}</a>
             @endforeach
