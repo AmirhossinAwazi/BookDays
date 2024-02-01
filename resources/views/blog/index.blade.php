@@ -26,7 +26,6 @@
     <x-slot name="footer">
         <div class="flex px-12 text-justify gap-16">
             <div class="text-xl font-semibold">About</div>
-            <div>{{ $blog->about }}</div>
             <div class="flex flex-col items-start gap-4">
                 <h3 class="text-xl font-semibold">Categories</h3>
                 @foreach ($categories as $category)
