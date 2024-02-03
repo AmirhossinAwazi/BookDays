@@ -14,6 +14,7 @@
         @foreach ($posts as $post)
         <x-widgets.post-item :$blog :$post/>
         @endforeach
+        {{ $posts->links() }}
     </div>
 
     <x-slot name="footer">
