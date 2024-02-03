@@ -18,7 +18,24 @@
     </div>
 
     <x-slot name="footer">
-        <div class="grid grid-cols-3 px-12 text-justify gap-16">
+
+        <div class="flex mt-24 justify-between items-center bg-primary-100 p-10 rounded-3xl">
+
+            <div class="text-left">
+
+                <p class="text-3xl tracking-tight font-semibold text-primary-700">Subscribe to {{ $blog->title }}</p>
+                <p class="mt-4 text-primary-600">Get notified whenever {{ $blog->name }} posts a new post!</p>
+
+            </div>
+
+            <form action="#" method="POST" class="flex items-stretch rounded-lg focus-within:ring-4 focus-within:ring-primary-200">
+                @csrf
+                <input type="email" name="email" class="px-6 py-2 text-primary-700 w-80 border-none rounded-l-lg focus:ring-0" placeholder="Enter your email" required>
+                <button class="px-8 py-2 bg-brown-400 rounded-r-lg uppercase text-white font-semibold">Subscribe</button>
+            </form>
+        </div>
+
+        <div class="pt-24 mb-11 grid grid-cols-3 px-12 text-justify gap-16">
 
             <div class="text-left">
                 <h3 class="text-xl font-semibold">About</h3>
