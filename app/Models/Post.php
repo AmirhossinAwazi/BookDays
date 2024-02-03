@@ -36,17 +36,22 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function imageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn () => Storage::disk('public')->url($this->image),
+            get: fn() => Storage::disk('public')->url($this->image),
         );
     }
 
     public function tagsString(): Attribute
     {
         return Attribute::make(
-            get: fn () => implode(', ', $this->tags()->pluck('name')->toArray()),
+            get: fn() => implode(', ', $this->tags()->pluck('name')->toArray()),
         );
     }
 }
