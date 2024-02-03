@@ -30,8 +30,8 @@
 
     {{ $slot }}
 
-    <div class="mt-40 bg-orange-700 text-orange-200 p-5">
-        <div class="container mx-auto text-center">
+    <div class="mt-40 bg-primary-300 text-primary-900 p-5">
+        <div class="container max-w-screen-xl mx-auto text-center">
             {{ $footer }}
         </div>
     </div>
