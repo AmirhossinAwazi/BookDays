@@ -14,7 +14,7 @@
         <div class="mt-4 text-xl text-gray-500">{!! str($post->body)->words(50, '...') !!}</div>
 
         <div class="mt-10">
-            <a href="{{ route('post.show', ['user' => $blog, 'post' => $post]) }}" class="px-8 py-3 text-lg font-semibold rounded-lg bg-secondary-200 text-secondary-800 hover:bg-secondary-300 hover:text-secondary-900">Read More</a>
+            <a href="#" class="px-8 py-3 text-lg font-semibold rounded-lg bg-secondary-200 text-secondary-800 hover:bg-secondary-300 hover:text-secondary-900">Read More</a>
         </div>
     </div>
 
