@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -38,6 +39,18 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/auth.php'));
+
+            Route::domain(config('app.url'))
+                ->middleware('web')
+                ->group(base_path('routes/auth.php'));
+            
+            Route::domain(config('app.url'))
+                ->middleware(['web', 'auth'])
+                ->group(base_path('routes/admin.php'));
+            
+            Route::bind('comment', function (string $value) {
+                return Comment::withoutGlobalScopes()->findOrFail($value);
+            });
         });
     }
 }
