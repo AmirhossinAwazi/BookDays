@@ -11,12 +11,18 @@ class SubscriberController extends Controller
 {
     public function store(Request $request, User $user)
     {
-        $validated = $request->validate(['email' => 'required|email|unique:subscribers']);
+        $validator = validator::make($request->all(), ['email' => 'required|email|unique:subscribers']);
 
-        $user->subscribers()->create($validated);
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withFragment('footer');
+        }
 
-        return to_route('blog.index', $user)
-            ->with('status', 'thank for subscribing!')
+        $user->subscribers()->create($validator->validated());
+
+        return back()
+            ->with('status', 'thanks for subscribing!')
             ->withFragment('footer');
     }
 }
