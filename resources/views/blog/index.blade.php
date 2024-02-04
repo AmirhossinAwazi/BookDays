@@ -34,11 +34,20 @@
 
             </div>
 
-            <form action="{{ route('subscriber.store', $blog) }}" method="POST" class="flex items-stretch rounded-lg focus-within:ring-4 focus-within:ring-primary-200">
-                @csrf
-                <input type="email" name="email" class="px-6 py-2 text-primary-700 w-80 border-none rounded-l-lg focus:ring-0" placeholder="Enter your email" required>
-                <button class="px-8 py-2 bg-brown-400 rounded-r-lg uppercase text-white font-semibold">Subscribe</button>
-            </form>
+            <div class="text-left">
+
+                <form action="{{ route('subscriber.store', $blog) }}" method="POST" class="flex items-stretch rounded-lg focus-within:ring-4 focus-within:ring-primary-200">
+                    @csrf
+                    <input type="email" name="email" class="px-6 py-2 text-primary-700 w-80 border-none rounded-l-lg focus:ring-0" placeholder="Enter your email" required>
+                    <button class="px-8 py-2 bg-brown-400 rounded-r-lg uppercase text-white font-semibold">Subscribe</button>
+                </form>
+
+                @error('email')
+                    <div class="mt-1 text-red-600"> {{ $message }} </div>
+                @enderror
+
+            </div>
+
         </div>
 
         <div class="pt-24 mb-11 grid grid-cols-3 px-12 text-justify gap-16">
