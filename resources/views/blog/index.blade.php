@@ -50,10 +50,10 @@
 
         </div>
 
-        <div class="pt-24 mb-11 grid grid-cols-3 px-12 text-justify gap-16">
+        <div class="pt-24 mb-11 items-center grid grid-cols-3 px-12 text-justify gap-16">
 
             <div class="text-left">
-                <h3 class="text-xl font-semibold">About</h3>
+                <h3 class="text-xl font-semibold ">About {{ $blog->title }}</h3>
                 <div>{{ $blog->about }}</div>
             </div>
 
@@ -64,6 +64,14 @@
                 @endforeach
             </div>
 
+            <div class="flex flex-col items-start gap-1 text-left">
+                <h3 class="text-lg font-semibold">Tags</h3>
+                <div>
+                    @foreach ($tags as $tag)
+                        <a href="#" class="text-primary-500 hover:text-primary-700 bg-primary-200 px-2 py-0.5 rounded text-xs">#{{ $tag->name }}</a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </x-slot>
 
