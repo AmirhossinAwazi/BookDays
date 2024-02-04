@@ -11,7 +11,15 @@ class SubscriberController extends Controller
 {
     public function store(Request $request, User $user)
     {
-        $validator = validator::make($request->all(), ['email' => 'required|email|unique:subscribers']);
+        $validator = validator::make(
+            $request->all(),
+            ['email' => 'required|email|unique:subscribers'],
+            [
+                'email' => [
+                    'unique' => 'This email is already a subscriber.',
+                ],
+            ],
+        );
 
         if ($validator->fails()) {
             return back()
