@@ -32,6 +32,7 @@
 
     <div class="mt-40 bg-primary-300 text-primary-900 p-5 rounded-t-lg">
         <div class="container max-w-screen-xl mx-auto text-center">
+            <a id="footer"></a>
             {{ $footer }}
         </div>
     </div>
