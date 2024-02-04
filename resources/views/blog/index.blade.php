@@ -23,12 +23,18 @@
 
             <div class="text-left">
 
-                <p class="text-3xl tracking-tight font-semibold text-primary-700">Subscribe to {{ $blog->title }}</p>
-                <p class="mt-4 text-primary-600">Get notified whenever {{ $blog->name }} posts a new post!</p>
+                @if (@session()->has('status'))
+                    <p class="text-3xl tracking-tight font-semibold text-primary-700">thanks to subscribing</p>
+                    <p class="mt-4 text-primary-600">You will get notified whenever {{ $blog->name }} posts a new post!</p>
+                @else
+                    <p class="text-3xl tracking-tight font-semibold text-primary-700">Subscribe to {{ $blog->title }}</p>
+                    <p class="mt-4 text-primary-600">Get notified whenever {{ $blog->name }} posts a new post!</p>
+                    
+                @endif
 
             </div>
 
-            <form action="#" method="POST" class="flex items-stretch rounded-lg focus-within:ring-4 focus-within:ring-primary-200">
+            <form action="{{ route('subscriber.store', $blog) }}" method="POST" class="flex items-stretch rounded-lg focus-within:ring-4 focus-within:ring-primary-200">
                 @csrf
                 <input type="email" name="email" class="px-6 py-2 text-primary-700 w-80 border-none rounded-l-lg focus:ring-0" placeholder="Enter your email" required>
                 <button class="px-8 py-2 bg-brown-400 rounded-r-lg uppercase text-white font-semibold">Subscribe</button>
