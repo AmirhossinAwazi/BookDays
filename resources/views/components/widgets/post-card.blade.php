@@ -1,6 +1,6 @@
 @props(['post'])
 
-<a href="#" class="flex-1 rounded-3xl drop-shadow-md hover:drop-shadow-2xl overflow-hidden">
+<a href="{{ route('post.show', [$post->author, $post]) }}" class="flex-1 rounded-3xl drop-shadow-md hover:drop-shadow-2xl overflow-hidden">
     <img src="{{ $post->image_url }}" alt="{{ $post->title }}" class="h-64 w-full object-cover">
 
     <div class="p-6 bg-white">
