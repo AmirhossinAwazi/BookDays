@@ -19,8 +19,8 @@
             </div>
         </div>
     </div>
-
-    <div class="mt-32 p-16 container text-justify mx-auto space-y-32">
+    
+    <div class="mt-32 prose p-16 container max-w-screen-xl mx-auto text-justify">
         {!! nl2br($post->body) !!}
     </div>
 
