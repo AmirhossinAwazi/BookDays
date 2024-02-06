@@ -11,6 +11,9 @@ class PostController extends Controller
 {
     public function show(User $user, Post $post)
     {
+
+        $post->increment('views');
+
         $tags = Tag::WhereHas('posts', function($query) use($user) {
             $query->where('author_id', $user->id);
         })->get();
