@@ -37,5 +37,12 @@ class CommentController extends Controller
 
         return to_route('comment.index');
     }
-    
+
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+
+        return to_route('comment.index');
+    }
+
 }
