@@ -49,4 +49,20 @@ class BlogController extends Controller
             'posts' => $posts,
         ]);
     }
+
+    public function search(Request $request, User $user)
+    {
+        $query = $request->query('q');
+        $posts = $user->posts()
+            ->where('title', 'like', "%$query%")
+            ->orWhere('body', 'like', "%$query%")
+            ->with(['category', 'tags'])
+            ->paginate(5);
+
+        return view('blog.search', [
+            'query' => $query,
+            'blog' => $user,
+            'posts' => $posts,
+        ]);
+    }
 }
