@@ -1,13 +1,11 @@
-<x-blog-layout>
-
+<x-blog-layout :$blog>
     <div class="bg-primary-200">
         <div class="flex container mx-auto justify-around items-center">
-
             <div>
                 <div class="font-title text-6xl text-primary-900">{{ $post->title }}</div>
-                <div class="text-xl text-primary-500">{{ $post->created_at->diffForHumans() }} By {{ $post->author->name }}</div>
+                <div class="text-xl text-primary-500">{{ $post->created_at->diffForHumans() }} by {{ $post->author->name }}</div>
                 <div>
-                    <x-widgets.category-item :blog="$blog" :category="$post->category"/>
+                    <x-widgets.category-item :$blog :category="$post->category"/>
                     @foreach($post->tags as $tag)
                         <x-widgets.tag-item :$blog :$tag/>
                     @endforeach
@@ -19,16 +17,17 @@
             </div>
         </div>
     </div>
-    
-    <div class="mt-32 prose p-16 container max-w-screen-xl mx-auto text-justify">
+
+    <div class="mt-32 prose prose-2xl p-16 container max-w-screen-lg mx-auto">
         {!! nl2br($post->body) !!}
     </div>
 
     {{-- comment section --}}
+    <a id="comments"></a>
     <div class="container p-16 pb-48 max-w-screen-md mx-auto">
         <h3 class="text-xl font-semibold text-secondary-600">Comments</h3>
 
-        <form action="{{ route('comment.store', ['user' => $blog, 'post'=> $post]) }}" method="POST">
+        <form action="{{ route('comment.store', ['user' => $blog, 'post' => $post]) }}" method="post">
             @csrf
 
             <div class="mt-4">
@@ -42,88 +41,25 @@
             </div>
 
             <x-primary-button class="mt-4">Submit</x-primary-button>
-
         </form>
 
-        @if (session()->has('comment-create'))
-        <p class="mt-8 text-3xl tracking-tight font-semibold text-primary-700">Thanks for commenting!</p>
-        <p class="mt-4 text-primary-600">Your comment awaits moderation!</p>
+        @if (session()->has('comment-created'))
+            <p class="mt-8 text-3xl tracking-tight font-semibold text-primary-700">Thanks for commenting!</p>
+            <p class="mt-4 text-primary-600">Your comment awaits moderation!</p>
         @endif
 
         <div>
+            @foreach($comments as $comment)
+                <div class="mt-6 p-4 border rounded-lg bg-gray-100">
+                    <div class="flex gap-2 text-sm text-gray-500">
+                        <div>{{ str($comment->email)->before('@') }} said</div>
+                        <div>{{ $comment->created_at->diffForHumans() }}</div>
+                    </div>
 
-            @foreach ($comments as $comment)
-            <div class="mt-6 p-4 border rounded-lg bg-gray-100">
-                <div class="flex gap-2 text-sm text-gray-500">
-                    <div>{{ str($comment->email)->before('@') }} said</div>
-                    <div>{{ $comment->created_at->diffForHumans() }}</div>
+                    <div class="mt-2 text-lg">{{ $comment->body }}</div>
                 </div>
-
-                <div class="mt-2 text-lg">{{ $comment->body }}</div>
-            </div>
             @endforeach
-
         </div>
-
     </div>
     {{-- end comment section --}}
-
-    <x-slot name="footer">
-
-        <div class="flex mt-24 justify-between items-center bg-primary-100 p-10 rounded-3xl">
-
-            <div class="text-left">
-
-                @if (@session()->has('status'))
-                    <p class="text-3xl tracking-tight font-semibold text-primary-700">thanks to subscribing</p>
-                    <p class="mt-4 text-primary-600">You will get notified whenever {{ $blog->name }} posts a new post!</p>
-                @else
-                    <p class="text-3xl tracking-tight font-semibold text-primary-700">Subscribe to {{ $blog->title }}</p>
-                    <p class="mt-4 text-primary-600">Get notified whenever {{ $blog->name }} posts a new post!</p>
-                    
-                @endif
-
-            </div>
-
-            <div class="text-left">
-
-                <form action="{{ route('subscriber.store', $blog) }}" method="POST" class="flex items-stretch rounded-lg focus-within:ring-4 focus-within:ring-primary-200">
-                    @csrf
-                    <input type="email" name="email" class="px-6 py-2 text-primary-700 w-80 border-none rounded-l-lg focus:ring-0" placeholder="Enter your email" required>
-                    <button class="px-8 py-2 bg-brown-400 rounded-r-lg uppercase text-white font-semibold">Subscribe</button>
-                </form>
-
-                @error('email')
-                    <div class="mt-1 text-red-600"> {{ $message }} </div>
-                @enderror
-
-            </div>
-
-        </div>
-
-        <div class="pt-24 mb-11 items-center grid grid-cols-3 px-12 text-justify gap-16">
-
-            <div class="text-left">
-                <h3 class="text-xl font-semibold ">About {{ $blog->title }}</h3>
-                <div>{{ $blog->about }}</div>
-            </div>
-
-            <div class="flex flex-col items-start gap-1">
-                <h3 class="text-xl font-semibold">Categories</h3>
-                @foreach ($categories as $category)
-                    <a href="#" class=" text-primary-700 hover:text-primary-900">{{ $category->title }}</a>
-                @endforeach
-            </div>
-
-            <div class="flex flex-col items-start gap-1 text-left">
-                <h3 class="text-lg font-semibold">Tags</h3>
-                <div>
-                    @foreach ($tags as $tag)
-                        <a href="#" class="text-primary-500 hover:text-primary-700 bg-primary-200 px-2 py-0.5 rounded text-xs">#{{ $tag->name }}</a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </x-slot>
-
 </x-blog-layout>
