@@ -29,4 +29,13 @@ class CommentController extends Controller
 
         return to_route('comment.index');
     }
+
+    public function moderate(Request $request, Comment $comment)
+    {
+        $comment->moderated_at = $comment->moderated_at ? null : now();
+        $comment->save();
+
+        return to_route('comment.index');
+    }
+    
 }
