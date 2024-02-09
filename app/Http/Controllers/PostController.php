@@ -19,6 +19,7 @@ class PostController extends Controller
         })->get();
 
         return view('blog.show',[
+            'comments' => $post->comments,
             'post' => $post,
             'blog' => $user,
             'tags' => $tags,
