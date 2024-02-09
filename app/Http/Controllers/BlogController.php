@@ -35,4 +35,18 @@ class BlogController extends Controller
             'posts' => $posts,
         ]);
     }
+
+    public function tag(User $user, Tag $tag)
+    {
+        $posts = $tag->posts()
+            ->whereBelongsTo($user, 'author')
+            ->with(['category', 'tags'])
+            ->paginate(5);
+
+        return view('blog.tag', [
+            'tag' => $tag,
+            'blog' => $user,
+            'posts' => $posts,
+        ]);
+    }
 }
