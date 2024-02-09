@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,6 +22,17 @@ class BlogController extends Controller
             'tags' => $tags,
             'categories' => $user->categories,
 
+        ]);
+    }
+
+    public function category(User $user, Category $category)
+    {
+        $posts = $category->posts()->with(['category', 'tag'])->paginate(5);
+
+        return view('blog.category', [
+            'category' => $category,
+            'blog' => $user,
+            'posts' => $posts,
         ]);
     }
 }
