@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -11,3 +12,4 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 Route::resource('/post', PostController::class)->except(['show']);
 Route::resource('/category', CategoryController::class)->except(['show']);
+Route::resource('/comment', CommentController::class)->except(['show', 'create', 'store']);
