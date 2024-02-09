@@ -44,6 +44,27 @@
             <x-primary-button class="mt-4">Submit</x-primary-button>
 
         </form>
+
+        @if (session()->has('comment-create'))
+        <p class="mt-8 text-3xl tracking-tight font-semibold text-primary-700">Thanks for commenting!</p>
+        <p class="mt-4 text-primary-600">Your comment awaits moderation!</p>
+        @endif
+
+        <div>
+
+            @foreach ($comments as $comment)
+            <div class="mt-6 p-4 border rounded-lg bg-gray-100">
+                <div class="flex gap-2 text-sm text-gray-500">
+                    <div>{{ str($comment->email)->before('@') }} said</div>
+                    <div>{{ $comment->created_at->diffForHumans() }}</div>
+                </div>
+
+                <div class="mt-2 text-lg">{{ $comment->body }}</div>
+            </div>
+            @endforeach
+
+        </div>
+
     </div>
     {{-- end comment section --}}
 
