@@ -1,3 +1,3 @@
-<tr class="bg-gray-600">
+<tr class="bg-gray-100">
     {{ $slot }}
 </tr>
