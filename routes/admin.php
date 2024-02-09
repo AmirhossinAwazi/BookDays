@@ -13,3 +13,4 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 Route::resource('/post', PostController::class)->except(['show']);
 Route::resource('/category', CategoryController::class)->except(['show']);
 Route::resource('/comment', CommentController::class)->except(['show', 'create', 'store']);
+Route::patch('/comment/{comment}/moderate', [CommentController::class, 'moderate'])->name('comment.moderate');
