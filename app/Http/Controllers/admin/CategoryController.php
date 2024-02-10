@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         return view('Admin.category.index',[
-            'categories' => $request->user()->categories()->paginate(2),
+            'categories' => $request->user()->categories()->paginate(5),
         ]);
     }
 

@@ -25,7 +25,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         return view('Admin.Post.index',[
-            'posts' => $request->user()->posts()->paginate(2),
+            'posts' => $request->user()->posts()->paginate(5),
         ]);
     }
 
