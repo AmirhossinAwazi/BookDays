@@ -14,7 +14,7 @@
                     <div>
                         <x-admin.table>
                             <x-admin.table-header>
-                                <x-admin.table-column>ID</x-admin.table-column>
+                                <x-admin.table-column>Number</x-admin.table-column>
                                 <x-admin.table-column>Title</x-admin.table-column>
                                 <x-admin.table-column>Slug</x-admin.table-column>
                                 <x-admin.table-column></x-admin.table-column>
