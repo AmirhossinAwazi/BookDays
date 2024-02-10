@@ -12,7 +12,7 @@
                     <div>
                         <x-admin.table>
                             <x-admin.table-header>
-                                <x-admin.table-column>ID</x-admin.table-column>
+                                <x-admin.table-column>Number</x-admin.table-column>
                                 <x-admin.table-column>Email</x-admin.table-column>
                                 <x-admin.table-column>Comment</x-admin.table-column>
                                 <x-admin.table-column>Moderated At</x-admin.table-column>
@@ -20,9 +20,9 @@
                                 <x-admin.table-column></x-admin.table-column>
                             </x-admin.table-header>
 
-                            @foreach($comments as $comment)
+                            @foreach($comments as $index => $comment)
                                 <x-admin.table-row>
-                                    <x-admin.table-column>{{ $comment->id }}</x-admin.table-column>
+                                    <x-admin.table-column>{{ $index+1 }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $comment->email }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $comment->body }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $comment->moderated_at?->diffForHumans() }}</x-admin.table-column>
