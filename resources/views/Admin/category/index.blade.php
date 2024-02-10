@@ -14,17 +14,19 @@
                     <div>
                         <x-admin.table>
                             <x-admin.table-header>
-                                <x-admin.table-column>Number</x-admin.table-column>
+                                <x-admin.table-column>number</x-admin.table-column>
                                 <x-admin.table-column>Title</x-admin.table-column>
                                 <x-admin.table-column>Slug</x-admin.table-column>
+                                
                                 <x-admin.table-column></x-admin.table-column>
                             </x-admin.table-header>
 
-                            @foreach ($categories as $category)
+                            @foreach ($categories as $index => $category)
                                 <x-admin.table-row>
-                                    <x-admin.table-column>{{ $category->id }}</x-admin.table-column>
+                                    <x-admin.table-column>{{ $index+1 }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $category->title }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $category->slug }}</x-admin.table-column>
+                                    
                                     <x-admin.table-column class="flex gap-2 justify-end">
                                         <x-link-button-gray href="{{ route('category.edit', $category) }}">
                                             Edit
