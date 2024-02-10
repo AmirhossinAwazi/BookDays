@@ -14,7 +14,7 @@
                     <div>
                         <x-admin.table>
                             <x-admin.table-header>
-                                <x-admin.table-column>ID</x-admin.table-column>
+                                <x-admin.table-column>Number</x-admin.table-column>
                                 <x-admin.table-column>Title</x-admin.table-column>
                                 <x-admin.table-column>Slug</x-admin.table-column>
                                 <x-admin.table-column>Category</x-admin.table-column>
@@ -23,9 +23,9 @@
                                 <x-admin.table-column></x-admin.table-column>
                             </x-admin.table-header>
 
-                            @foreach($posts as $post)
+                            @foreach($posts as $index => $post)
                                 <x-admin.table-row>
-                                    <x-admin.table-column>{{ $post->id }}</x-admin.table-column>
+                                    <x-admin.table-column>{{ $index+1 }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $post->title }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $post->slug }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $post->category->title }}</x-admin.table-column>
