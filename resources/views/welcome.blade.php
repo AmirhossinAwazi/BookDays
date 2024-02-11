@@ -5,7 +5,7 @@
         <div class="bg-primary-100">
             <div class="flex justify-around container mx-auto">
                 <div class="flex flex-col justify-center p-16">
-                    <div class="font-title text-7xl text-accent-600">Join Larablog!</div>
+                    <div class="font-title text-7xl text-accent-600">Join BookDays!</div>
                     <div class="mt-4 text-2xl text-secondary-600">Start writing with {{ $blogCount }} {{ Str::plural('blog', $blogCount) }} on Larablog today.</div>
 
                     <div class="mt-20">
