@@ -27,7 +27,7 @@ class BlogController extends Controller
 
     public function category(User $user, Category $category)
     {
-        $posts = $category->posts()->with(['category', 'tag'])->paginate(5);
+        $posts = $category->posts()->with(['category', 'tags'])->paginate(5);
 
         return view('blog.category', [
             'category' => $category,
