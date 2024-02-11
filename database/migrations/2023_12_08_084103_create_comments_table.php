@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->text('body');
-            $table->foreignId('post_id');
+            $table->foreignId('post_id')->constrained();
             $table->dateTime('moderated_at')->nullable();
             $table->timestamps();
         });
