@@ -6,7 +6,7 @@
             <div class="flex justify-around container mx-auto">
                 <div class="flex flex-col justify-center p-16">
                     <div class="font-title text-7xl text-accent-600">Join BookDays!</div>
-                    <div class="mt-4 text-2xl text-secondary-600">Start writing with {{ $blogCount }} {{ Str::plural('blog', $blogCount) }} on Larablog today.</div>
+                    <div class="mt-4 text-2xl text-secondary-600">Start writing with {{ $blogCount }} {{ Str::plural('blog', $blogCount) }} on BookDays today.</div>
 
                     <div class="mt-20">
                         <a href="{{ route('register') }}" class="px-10 py-5 text-2xl font-semibold rounded-xl bg-brown-300 text-brown-800 hover:bg-brown-400 hover:text-brown-900">Create My Blog</a>
