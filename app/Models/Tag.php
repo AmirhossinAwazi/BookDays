@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,7 @@ class Tag extends Model
         'slug',
     ];
 
-    public function posts()
+    public function posts() :BelongsToMany
     {
         return $this->belongsToMany(Post::class);
     }
