@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div>
@@ -17,16 +17,30 @@
                                 <x-admin.table-column>Comment</x-admin.table-column>
                                 <x-admin.table-column>Moderated At</x-admin.table-column>
                                 <x-admin.table-column>Created At</x-admin.table-column>
+                                <x-admin.table-column>About post</x-admin.table-column>
                                 <x-admin.table-column></x-admin.table-column>
                             </x-admin.table-header>
 
                             @foreach($comments as $index => $comment)
                                 <x-admin.table-row>
-                                    <x-admin.table-column>{{ $index+1 }}</x-admin.table-column>
+                                    <x-admin.table-column>{{ $index + 1 }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $comment->email }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $comment->body }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $comment->moderated_at?->diffForHumans() }}</x-admin.table-column>
                                     <x-admin.table-column>{{ $comment->created_at->diffForHumans() }}</x-admin.table-column>
+
+                                    <x-admin.table-column>
+
+                                        <a
+                                            target="_blank"
+                                            href="{{ route('post.show', ['post' => $comment->post->slug,'user'=>$comment->post->author->username]) }}">
+
+                                            {{ $comment->post->title }}
+
+                                        </a>
+
+                                    </x-admin.table-column>
+
                                     <x-admin.table-column class="flex gap-2 justify-end">
                                         <form action="{{ route('comment.moderate', $comment) }}" method="post">
                                             @csrf
@@ -34,13 +48,15 @@
                                             <x-secondary-button type="submit">Moderate</x-secondary-button>
                                         </form>
 
-                                        <x-link-button-gray href="{{ route('comment.edit', $comment) }}">Edit</x-link-button-gray>
+                                        <x-link-button-gray
+                                            href="{{ route('comment.edit', $comment) }}">Edit</x-link-button-gray>
 
                                         <form method="post" action="{{ route('comment.destroy', $comment) }}">
                                             @csrf
                                             @method('delete')
 
-                                            <x-danger-button onclick="return confirm('Are you sure?')">Delete</x-danger-button>
+                                            <x-danger-button
+                                                onclick="return confirm('Are you sure?')">Delete</x-danger-button>
                                         </form>
                                     </x-admin.table-column>
                                 </x-admin.table-row>
