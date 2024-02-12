@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         return view('Admin.comment.index', [
-            'comments' => $request->user()->comments()->withoutGlobalScope('moderated')->paginate(),
+            'comments' => auth()->user()->comments()->withoutGlobalScope('moderated')->paginate(),
         ]);
     }
 
