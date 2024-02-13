@@ -13,7 +13,7 @@ Route::domain('{user:username}.' . config('app.url'))->group(function () {
    Route::post('/subscriber', [SubscriberController::class, 'store'])->name('subscriber.store');
    route::post('/post/{post:slug}/comment', [CommentController::class, 'store'])->name('comment.store');
    Route::get('/category/{category:slug}', [BlogController::class, 'category'])->name('blog.category');
-   Route::get('/tag/{tag:slug}', [BlogController::class, 'tag'])->withoutScopedBindings()->name('blog.tag');
+   Route::get('/tag/{tag:id}', [BlogController::class, 'tag'])->withoutScopedBindings()->name('blog.tag');
    Route::get('/search', [BlogController::class, 'search'])->name('blog.search');
 });
 
