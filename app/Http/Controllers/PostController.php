@@ -12,13 +12,14 @@ class PostController extends Controller
     public function show(User $user, Post $post)
     {
 
-        $post->increment('views');
+        $post->incrementReadCount();
 
         $tags = Tag::WhereHas('posts', function($query) use($user) {
             $query->where('author_id', $user->id);
         })->get();
 
-        return view('blog.show',[
+        return view('blog.show', compact('post'),
+        [
             'comments' => $post->comments,
             'post' => $post,
             'blog' => $user,

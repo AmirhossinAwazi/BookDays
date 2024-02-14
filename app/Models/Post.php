@@ -22,6 +22,12 @@ class Post extends Model
         'image',
     ];
 
+    public function incrementReadCount()
+    {
+        $this->reads++;
+        return $this->save();
+    }    
+
     public function author()
     {
         return $this->belongsTo(User::class);
