@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewComment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Models\Post;
 use App\Models\User;
@@ -12,7 +13,9 @@ class CommentController extends Controller
 {
     public function store(StoreCommentRequest $Request, User $user,Post $post, Comment $comment)
     {
-        $post->comments()->create($Request->validated());
+        $comment = $post->comments()->create($Request->validated());
+
+        NewComment::dispatch($comment);
 
         return back()
             ->with('comment-created', 'Your comment awaits moderation. Thanks!')
