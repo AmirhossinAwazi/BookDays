@@ -2,6 +2,8 @@
 
 namespace App\Listeners;
 
+use App\Events\NewComment;
+use App\Notifications\NewCommentNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -18,8 +20,8 @@ class NotifyAuthorAboutNewComment
     /**
      * Handle the event.
      */
-    public function handle(object $event): void
+    public function handle(NewComment $event): void
     {
-        //
+        $event->comment->post->author->notify(new NewCommentNotification);
     }
 }
