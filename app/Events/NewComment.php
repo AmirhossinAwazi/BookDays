@@ -18,9 +18,12 @@ class NewComment
     /**
      * Create a new event instance.
      */
-    public function __construct(public Comment $comment)
+
+    public $comment;
+
+    public function __construct(Comment $comment)
     {
-        //
+        $this->comment = $comment;
     }
 
     /**
