@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\NewComment;
+use App\Events\NewPost;
 use App\Listeners\NotifyAuthorAboutNewComment;
+use App\Listeners\NotifySubscribersAboutNewPost;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         NewComment::class => [
             NotifyAuthorAboutNewComment::class,
+        ],
+
+        NewPost::class => [
+            NotifySubscribersAboutNewPost::class,
         ],
 
     ];
