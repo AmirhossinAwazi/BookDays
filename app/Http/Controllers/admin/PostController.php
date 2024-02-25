@@ -55,6 +55,8 @@ class PostController extends Controller
             'image' => $request->file('image')->store('post-image', 'public'),
         ]);
 
+        $post->tags()->attach(Tag::findOrCreateFromRequest($request));
+
         NewPost::dispatch($post);
 
         return to_route('post.index');
