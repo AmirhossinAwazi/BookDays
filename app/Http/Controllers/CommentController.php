@@ -15,7 +15,7 @@ class CommentController extends Controller
     {
         $comment = $post->comments()->create($Request->validated());
 
-        event(new NewComment($comment));
+        NewComment::dispatch($comment);
 
         return back()
             ->with('comment-created', 'Your comment awaits moderation. Thanks!')
