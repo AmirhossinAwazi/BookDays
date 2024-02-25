@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\NewPost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -44,7 +45,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $request->user()->posts()->create([
+        $post = $request->user()->posts()->create([
             'title' => $request->input('title'),
             'slug' => $request->input('slug') ?? Str::slug($request->input('title')),
             'body' => $request->input('body'),
@@ -53,6 +54,8 @@ class PostController extends Controller
             'is_draft' => $request->boolean('is_draft') ?? false,
             'image' => $request->file('image')->store('post-image', 'public'),
         ]);
+
+        NewPost::dispatch($post);
 
         return to_route('post.index');
     }
